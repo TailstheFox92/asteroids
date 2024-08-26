@@ -18,7 +18,7 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill((1, 1, 1))
-        dt = clock.tick(60) / 1000
+        dt = clock.tick(FRAMES_PER_SECOND) / 1000
 
 
 if __name__ == "__main__":
