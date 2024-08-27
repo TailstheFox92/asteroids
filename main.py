@@ -28,8 +28,10 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        screen.fill("black")
-        player.draw(screen)
+
+        player.update(dt)  # update rotation
+        screen.fill("black")  # fill screen with black
+        player.draw(screen)  # draw player on screen
         pygame.display.flip()
 
         dt = clock.tick(FRAMES_PER_SECOND) / 1000
