@@ -8,6 +8,8 @@ from constants import (
         FRAMES_PER_SECOND
     )
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 
 def main():
@@ -25,9 +27,15 @@ def main():
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
 
     Player.containers = (updatable, drawable)
     player = Player(x, y)
+
+    asteroid_field = AsteroidField()
 
     while True:
         for event in pygame.event.get():
@@ -35,12 +43,12 @@ def main():
                 return
 
         for sprite in updatable:
-            player.update(dt)  # update rotation
+            sprite.update(dt)  # update rotation
 
         screen.fill("black")  # fill screen with black
 
         for sprite in drawable:
-            player.draw(screen)  # draw player on screen
+            sprite.draw(screen)  # draw player on screen
 
         pygame.display.flip()
 
