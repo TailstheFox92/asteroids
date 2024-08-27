@@ -22,6 +22,11 @@ def main():
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
     print(f"Spawning player at {x}, {y}")
+
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updatable, drawable)
     player = Player(x, y)
 
     while True:
@@ -29,9 +34,14 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        player.update(dt)  # update rotation
+        for sprite in updatable:
+            player.update(dt)  # update rotation
+
         screen.fill("black")  # fill screen with black
-        player.draw(screen)  # draw player on screen
+
+        for sprite in drawable:
+            player.draw(screen)  # draw player on screen
+
         pygame.display.flip()
 
         dt = clock.tick(FRAMES_PER_SECOND) / 1000
