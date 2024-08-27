@@ -2,7 +2,11 @@
 # the open-source pygame library
 # throughout this file
 import pygame
-from constants import *
+from constants import (
+        SCREEN_WIDTH,
+        SCREEN_HEIGHT,
+        FRAMES_PER_SECOND
+    )
 
 
 def main():
