@@ -7,6 +7,7 @@ from constants import (
         SCREEN_HEIGHT,
         FRAMES_PER_SECOND
     )
+from player import Player
 
 
 def main():
@@ -16,12 +17,21 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     clock = pygame.time.Clock()
     dt = 0
+
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
+    print(f"Spawning player at {x}, {y}")
+    player = Player(x, y)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        screen.fill((1, 1, 1))
+        screen.fill("black")
+        player.draw(screen)
+        pygame.display.flip()
+
         dt = clock.tick(FRAMES_PER_SECOND) / 1000
 
 
